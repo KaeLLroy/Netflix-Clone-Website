@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Netflix — Watch what you want</title>
+<meta name="description" content="A minimal Netflix clone. Browse, search and preview films." />
+<meta name="theme-color" content="#08080a" />
+<link rel="preconnect" href="https://image.tmdb.org" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<a class="skip-link" href="#browse">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a class="brand" href="#" aria-label="Netflix, home">NETFLIX</a>
+
+    <form class="search" role="search" id="searchForm">
+      <label class="sr-only" for="searchInput">Search titles and genres</label>
+      <svg class="search__icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+        <circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" />
+      </svg>
+      <input id="searchInput" type="search" placeholder="Search titles, genres" autocomplete="off" spellcheck="false" />
+      <button type="button" class="search__clear" id="searchClear" aria-label="Clear search" hidden>
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
+      </button>
+    </form>
+
+    <div class="nav__right">
+      <div class="avatar" aria-hidden="true">N</div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" id="hero" aria-labelledby="heroTitle"></section>
+
+  <section class="browse" id="browse" aria-label="Browse"></section>
+
+  <section class="results" id="results" hidden aria-live="polite">
+    <div class="results__head">
+      <h2 class="results__title" id="resultsTitle">Results</h2>
+      <p class="results__count" id="resultsCount"></p>
+    </div>
+    <div class="results__grid" id="resultsGrid"></div>
+    <p class="results__empty" id="resultsEmpty" hidden></p>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>A Netflix clone, built for practice. Artwork and metadata from TMDB.</p>
+</footer>
+
+<dialog class="modal" id="modal" aria-labelledby="modalTitle">
+  <article class="modal__panel">
+    <button type="button" class="modal__close" id="modalClose" aria-label="Close">
+      <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
+    </button>
+
+    <div class="modal__media">
+      <img id="modalImage" alt="" />
+      <div class="modal__fade"></div>
+    </div>
+
+    <div class="modal__body">
+      <h2 class="modal__title" id="modalTitle"></h2>
+      <p class="modal__meta" id="modalMeta"></p>
+      <p class="modal__overview" id="modalOverview"></p>
+
+      <div class="modal__actions">
+        <button type="button" class="btn btn--primary" id="modalPlay">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M8 5.5v13l11-6.5z" /></svg>
+          Play
+        </button>
+        <button type="button" class="btn btn--ghost" id="modalAdd" aria-pressed="false">
+          <svg class="icon-plus" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14" /></svg>
+          <svg class="icon-check" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7" /></svg>
+          <span id="modalAddText">Add to list</span>
+        </button>
+      </div>
+    </div>
+  </article>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="app.js" defer></script>
+</body>
+</html>
